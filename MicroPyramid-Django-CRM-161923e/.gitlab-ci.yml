@@ -1,0 +1,15 @@
+deploy_live:
+  stage: deploy
+  environment:
+    name: live
+  script:
+    - df -h
+    - sudo /bin/rm -rf /home/bottlecrm/bottlecrm/; cp -r . /home/bottlecrm/bottlecrm/
+    - source /home/bottlecrm/env/bin/activate
+    - pip install -r /home/bottlecrm/bottlecrm/requirements.txt
+    - python /home/bottlecrm/bottlecrm/manage.py migrate --noinput
+    - sudo /usr/bin/supervisorctl restart all
+  only:
+    - master
+  tags:
+    - bottlecrm-com
