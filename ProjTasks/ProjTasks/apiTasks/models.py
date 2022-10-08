@@ -5,7 +5,7 @@ from django.db import models
 class Task(models.Model):
     owner=models.PositiveBigIntegerField(null=False, blank=False)
     parent=models.PositiveBigIntegerField(null=True,blank=True)
-    title= models.TextField(null=True, blank=True)
+    title= models.CharField(max_length=25, null=True, blank=True)
     body= models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
