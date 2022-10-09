@@ -48,6 +48,6 @@ def getTasks(request):
 
 @api_view(['GET'])
 def getTask(request,pk):
-    tasks = Task.objects.get(id=pk)
-    serializer = TaskSerializer(tasks, many=False)
+    task = Task.objects.get(id=pk)
+    serializer = TaskSerializer(task, many=False)
     return Response(serializer.data)
