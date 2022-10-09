@@ -1,10 +1,12 @@
 import React , {useState, useEffect}from 'react'
 import ListItem  from '../components/ListItem'
+
 const TasksListPage = () => {
     let [tasks, setTasks] = useState([])
     useEffect (() => {
-
+        getTasks()
     }, [])
+    
     let getTasks =  async () => {
        let response = await fetch('/api/tasks/')
        let data = await response.json()
@@ -15,7 +17,7 @@ const TasksListPage = () => {
         <div>
             <div className="tasks-list">
                 {tasks.map((task,index)=> (
-                    <ListItem key ={index } task={task}/>
+                    <ListItem key ={index} task={task}/>
                 ))}
             </div>
         </div>
